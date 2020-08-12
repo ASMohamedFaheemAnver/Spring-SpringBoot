@@ -9,7 +9,7 @@ import org.studyeasy.interfaces.Engine;
 public class Corolla implements Car {
 
     @Autowired
-    @Qualifier("v6")
+    @Qualifier("engineType")
     Engine engine;
 
     public String specs() {
