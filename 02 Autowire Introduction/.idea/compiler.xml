@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Dependency Injection" />
         <module name="Spring5" />
+        <module name="02 Autowire Introduction" />
       </profile>
     </annotationProcessing>
   </component>
