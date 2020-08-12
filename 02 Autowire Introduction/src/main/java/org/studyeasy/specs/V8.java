@@ -1,10 +1,10 @@
 package org.studyeasy.specs;
 
-import org.springframework.stereotype.Component;
+
 import org.studyeasy.interfaces.Engine;
 
 // Can give different component name if we want
-@Component
+//@Component
 public class V8 implements Engine {
     public String type() {
         return "V8 engine";
