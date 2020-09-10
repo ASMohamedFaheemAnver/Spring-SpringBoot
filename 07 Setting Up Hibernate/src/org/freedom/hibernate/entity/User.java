@@ -7,6 +7,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+	public User() {
+		
+	}
 	
 	public User(String user_name, String password, String first_name, String last_name) {
 		this.user_name = user_name;
@@ -53,5 +56,11 @@ public class User {
 	}
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", user_name=" + user_name + ", password=" + password + ", first_name="
+				+ first_name + ", last_name=" + last_name + "]";
 	}
 }
