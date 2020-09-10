@@ -1,5 +1,7 @@
 package org.freedom.hibernate;
 
+import java.util.List;
+
 import org.freedom.hibernate.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 
 public class App {
 	public static void main(String[] args) {
-		deleteUsingORM();
+		listingOutDataUsingORM();
 	}
 
 	// Will used to write database
@@ -40,7 +42,6 @@ public class App {
 			User user = new User();
 			session.beginTransaction();
 			user = session.get(User.class, 1);
-			session.getTransaction().commit();
 			System.out.println(user);
 		} finally {
 			session.close();
@@ -87,5 +88,27 @@ public class App {
 			factory.close();
 		}
 	}
+	
+	// Listing out database
+		public static void listingOutDataUsingORM() {
+			SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)
+					.buildSessionFactory();
+
+			Session session = factory.getCurrentSession();
+
+			try {
+				session.beginTransaction();
+				
+				List<User> users = session.createQuery("from users").getResultList();
+				
+				for(User user: users) {
+					System.out.println(user);
+				}
+				
+			} finally {
+				session.close();
+				factory.close();
+			}
+		}
 
 }
