@@ -20,5 +20,7 @@
    </bean>
  
  	<mvc:annotation-driven/>
+ 	
+ 	<mvc:resources location="/style/" mapping="/style/**"></mvc:resources>
  
    </beans>
