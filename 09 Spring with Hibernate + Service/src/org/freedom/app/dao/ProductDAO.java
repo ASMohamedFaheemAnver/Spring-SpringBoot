@@ -6,4 +6,6 @@ import org.freedom.app.entity.Product;
 
 public interface ProductDAO {
 	public List<Product> getProducts();
+
+	public void addProduct(Product product);
 }

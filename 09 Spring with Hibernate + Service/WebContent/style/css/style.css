@@ -1,16 +1,16 @@
-table{
+table {
 	border: 1px solid #8c8c8c;
 	border-collapse: collapse;
-	padding: 5px;	
+	padding: 5px;
 }
 
-th{
+th, .btn {
 	border: 1px solid #8c8c8c;
 	padding: 5px;
 	background: #BAEDED;
 }
 
-td{
+td {
 	border: 1px solid #8c8c8c;
 	padding: 5px;
 }

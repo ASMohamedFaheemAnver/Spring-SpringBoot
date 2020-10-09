@@ -22,7 +22,7 @@
 		<property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/spring_hibernate_db?useSSL=false" />
 		<property name="user" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="*FreeDoM9@?" />
 
 		<!-- Connection pool properties for ComboPooledDataSource -->
 		<property name="minPoolSize" value="3" />

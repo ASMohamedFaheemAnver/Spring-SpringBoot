@@ -38,6 +38,8 @@
 
 			</c:forEach>
 		</table>
+		<br/>
+		<input class="btn" type="button" value="Add product" onclick="window.location.href='add-product'" />
 	</div>
 </body>
 </html>

@@ -6,4 +6,6 @@ import org.freedom.app.entity.Product;
 
 public interface AppService {
 	List<Product> getProducts();
+
+	void addProduct(Product product);
 }

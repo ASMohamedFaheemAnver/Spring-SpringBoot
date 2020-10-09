@@ -20,10 +20,18 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	
 	public List<Product> getProducts() {
+		System.out.println("ProductDAOImpl, getProduct");
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Product> productQuery = currentSession.createQuery("from products", Product.class);
 		List<Product> products = productQuery.getResultList();
 		return products;
+	}
+
+	@Override
+	public void addProduct(Product product) {
+		System.out.println("ProductDAOImpl, addProduct");
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.save(product);
 	}
 
 }
