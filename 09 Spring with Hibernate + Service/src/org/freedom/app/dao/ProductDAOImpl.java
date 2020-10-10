@@ -20,7 +20,7 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	
 	public List<Product> getProducts() {
-		System.out.println("ProductDAOImpl, getProduct");
+		System.out.println("ProductDAOImpl, getProducts");
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Product> productQuery = currentSession.createQuery("from products", Product.class);
 		List<Product> products = productQuery.getResultList();
@@ -31,7 +31,14 @@ public class ProductDAOImpl implements ProductDAO {
 	public void addProduct(Product product) {
 		System.out.println("ProductDAOImpl, addProduct");
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.save(product);
+		currentSession.saveOrUpdate(product);
+	}
+
+	@Override
+	public Product getProduct(int product_id) {
+		System.out.println("ProductDAOImpl, getProduct(" + product_id +  ")");
+		Session currentSession = sessionFactory.getCurrentSession();
+		return currentSession.get(Product.class, product_id);
 	}
 
 }

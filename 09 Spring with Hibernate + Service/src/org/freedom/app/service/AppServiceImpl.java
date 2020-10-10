@@ -16,7 +16,6 @@ public class AppServiceImpl implements AppService{
 	@Override
 	@Transactional
 	public List<Product> getProducts() {
-		
 		return productDAO.getProducts();
 	}
 
@@ -25,6 +24,12 @@ public class AppServiceImpl implements AppService{
 	public void addProduct(Product product) {
 		productDAO.addProduct(product);
 		
+	}
+
+	@Override
+	@Transactional
+	public Product getProduct(int product_id) {
+		return productDAO.getProduct(product_id);
 	}
 
 }

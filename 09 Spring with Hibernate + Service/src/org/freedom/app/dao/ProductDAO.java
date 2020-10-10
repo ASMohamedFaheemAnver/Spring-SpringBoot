@@ -8,4 +8,6 @@ public interface ProductDAO {
 	public List<Product> getProducts();
 
 	public void addProduct(Product product);
+
+	public Product getProduct(int product_id);
 }

@@ -16,16 +16,17 @@
 <body>
 	<h2>Add product</h2>
 	<br />
-	<form:form action="create-product" method="POST"
+	<form:form action="${pageContext.request.contextPath }/add-product" method="POST"
 		modelAttribute="product">
 		<p>Product name :</p>
 		<form:input path="product_name" />
+		<form:hidden path="product_id" />
 		<br />
 		<p>Cost</p>
 		<form:input path="cost" />
 		<br />
 		<br />
-		<input class="btn" type="submit" value="Add product">
+		<input class="btn" type="submit" value="Add/Update product">
 	</form:form>
 	<br />
 	<a href="${pageContext.request.contextPath }/">Home</a>

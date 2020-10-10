@@ -8,4 +8,6 @@ public interface AppService {
 	List<Product> getProducts();
 
 	void addProduct(Product product);
+
+	Product getProduct(int product_id);
 }

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AppController {
@@ -25,18 +26,25 @@ public class AppController {
 		return "products";
 	}
 	
-	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
-	public String addProduct(Model model) {
+	@RequestMapping(value = "/add-product-form", method = RequestMethod.GET)
+	public String addProductForm(Model model) {
 		Product product = new Product();
 		model.addAttribute("product", product);
 		return "add-product";
 	}
 	
-	@RequestMapping(value = "/create-product", method = RequestMethod.POST)
-	public String createProduct(@ModelAttribute("product")Product product) {
+	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
+	public String addProduct(@ModelAttribute("product")Product product) {
 		System.out.println(product);
 		appService.addProduct(product);
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/update-product-form", method = RequestMethod.GET)
+	public String updateProductForm(@RequestParam("id") int product_id, Model model) {
+		Product product = appService.getProduct(product_id);
+		model.addAttribute("product", product);
+		return "add-product";
 	}
 
 }
