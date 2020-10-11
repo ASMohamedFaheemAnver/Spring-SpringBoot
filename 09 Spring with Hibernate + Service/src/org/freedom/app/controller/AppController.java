@@ -46,5 +46,11 @@ public class AppController {
 		model.addAttribute("product", product);
 		return "add-product";
 	}
+	
+	@RequestMapping(value = "/delete-product", method = RequestMethod.GET)
+	public String deleteProduct(@RequestParam("id") int product_id) {
+		appService.deleteProduct(product_id);
+		return "redirect:/";
+	}
 
 }

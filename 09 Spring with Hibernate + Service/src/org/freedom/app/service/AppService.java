@@ -10,4 +10,6 @@ public interface AppService {
 	void addProduct(Product product);
 
 	Product getProduct(int product_id);
+
+	void deleteProduct(int product_id);
 }

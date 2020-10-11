@@ -25,7 +25,7 @@
 				<th>Product ID</th>
 				<th>Product Name</th>
 				<th>Cost($)</th>
-				<th>Operation</th>
+				<th>Operations</th>
 			</tr>
 
 			<!-- loop over and print our customers -->
@@ -37,6 +37,8 @@
 					<td>${product.cost}</td>
 					<td>
 						<a href="${pageContext.request.contextPath }/update-product-form/?id=${product.product_id}">Update</a>
+						|
+						<a onclick="if(!(confirm('Are you sure you want to delete the product?'))) return false" href="${pageContext.request.contextPath }/delete-product/?id=${product.product_id}">Delete</a>
 					</td>
 				</tr>
 
