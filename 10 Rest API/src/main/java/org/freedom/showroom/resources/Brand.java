@@ -13,12 +13,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.freedom.showroom.hibernate.entity.BrandEntity;
+import org.freedom.showroom.hibernate.entity.ProductEntity;
 import org.freedom.showroom.services.BrandService;
+import org.freedom.showroom.services.ProductService;
 
 @Path("/showroom")
 public class Brand {
 
 	BrandService brandService = new BrandService();
+	ProductService productService = new ProductService();
 
 	@GET
 	@Path("/get-brands")
@@ -32,7 +35,7 @@ public class Brand {
 	@POST
 	@Path("/set-brand")
 	//@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public void setBrand(BrandEntity brand) {
 		brandService.addBrand(brand);
 	}
@@ -40,7 +43,7 @@ public class Brand {
 	@PUT
 	@Path("/put-brand/{brandId}")
 	//@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public void putBrand(@PathParam("brandId") int brandId, BrandEntity updatedBrand) {
 		updatedBrand.setBrand_id(brandId);
 		brandService.updateBrand(updatedBrand);
@@ -49,8 +52,17 @@ public class Brand {
 	@DELETE
 	@Path("/delete-brand/{brandId}")
 	//@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteBrand(@PathParam("brandId") int brandId) {
 		brandService.deleteBrand(brandId);
+	}
+	
+	@GET
+	@Path("/brand/{brandId}/products")
+	// @Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId) {
+		List<ProductEntity> listOfProducts = productService.getProductsByBrand(brandId);
+		return listOfProducts;
 	}
 }
