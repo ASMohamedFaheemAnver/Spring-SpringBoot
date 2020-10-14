@@ -20,15 +20,20 @@ public class Product {
 	// @Produces(MediaType.APPLICATION_XML)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId,
-			@QueryParam("category") String category) {
+			@QueryParam("category") String category, @QueryParam("start") int start, @QueryParam("size") int size) {
 		List<ProductEntity> listOfProducts;
-		if( (category != null) && (category.equals("bike") || category.equals("car"))) {
+		if ((category != null)) {
 			listOfProducts = productService.getProductsByBrandAndCategory(brandId, category);
-			return listOfProducts;
-		}else {
+		} else {
 			listOfProducts = productService.getProductsByBrand(brandId);
-			return listOfProducts;
 		}
-		
+
+		if (start >= 0 && size > 0) {
+			listOfProducts = listOfProducts.subList(listOfProducts.size() >= start ? start : listOfProducts.size(),
+					listOfProducts.size() >= size ? size : listOfProducts.size());
+		}
+
+		return listOfProducts;
+
 	}
 }
