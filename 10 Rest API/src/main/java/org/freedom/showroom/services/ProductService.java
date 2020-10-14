@@ -13,4 +13,8 @@ public class ProductService {
 		return productDAO.getProductsByBrand(brandId);
 	}
 
+	public List<ProductEntity> getProductsByBrandAndCategory(int brandId, String category) {
+		return productDAO.getProductsByBrandAndCategory(brandId, category);
+	}
+
 }

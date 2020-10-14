@@ -20,4 +20,11 @@ public class ProductDAO {
 		return session.createQuery(query).getResultList();
 	}
 
+	public List<ProductEntity> getProductsByBrandAndCategory(int brandId, String category) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		String query = "from products where brand_id = '" + brandId + "' AND category = '" + category + "'";
+		return session.createQuery(query).getResultList();
+	}
+
 }
