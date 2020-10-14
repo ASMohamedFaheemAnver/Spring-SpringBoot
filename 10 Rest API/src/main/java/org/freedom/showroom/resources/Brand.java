@@ -13,15 +13,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.freedom.showroom.hibernate.entity.BrandEntity;
-import org.freedom.showroom.hibernate.entity.ProductEntity;
 import org.freedom.showroom.services.BrandService;
-import org.freedom.showroom.services.ProductService;
 
 @Path("/showroom")
 public class Brand {
 
 	BrandService brandService = new BrandService();
-	ProductService productService = new ProductService();
+	
 
 	@GET
 	@Path("/get-brands")
@@ -57,12 +55,8 @@ public class Brand {
 		brandService.deleteBrand(brandId);
 	}
 	
-	@GET
-	@Path("/brand/{brandId}/products")
-	// @Produces(MediaType.APPLICATION_XML)
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId) {
-		List<ProductEntity> listOfProducts = productService.getProductsByBrand(brandId);
-		return listOfProducts;
+	@Path("/brand")
+	public Product productDelegation() {
+		return new Product();
 	}
 }
