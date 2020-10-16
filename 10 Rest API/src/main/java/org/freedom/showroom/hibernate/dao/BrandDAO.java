@@ -41,4 +41,10 @@ public class BrandDAO {
 		session.getTransaction().commit();
 	}
 
+	public BrandEntity getBrand(int brand_id) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		return session.get(BrandEntity.class, brand_id);
+	}
+
 }

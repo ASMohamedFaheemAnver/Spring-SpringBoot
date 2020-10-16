@@ -27,4 +27,8 @@ public class BrandService {
 
 	}
 
+	public BrandEntity getBrand(int brand_id) {
+		return brandDAO.getBrand(brand_id);
+	}
+
 }

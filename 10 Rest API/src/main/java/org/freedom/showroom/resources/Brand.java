@@ -2,6 +2,7 @@ package org.freedom.showroom.resources;
 
 import java.util.List;
 
+import javax.net.ssl.SSLEngineResult.Status;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -10,7 +11,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.freedom.showroom.hibernate.entity.BrandEntity;
 import org.freedom.showroom.services.BrandService;
@@ -29,13 +33,22 @@ public class Brand {
 		List<BrandEntity> listOfBrands = brandService.getBrands();
 		return listOfBrands;
 	}
+	
+	@GET
+	@Path("/get-brand/{brandId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public BrandEntity getBrand(@PathParam("brandId") int brandId) {
+		return brandService.getBrand(brandId);
+	}
 
 	@POST
 	@Path("/set-brand")
 	//@Consumes(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void setBrand(BrandEntity brand) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response setBrand(BrandEntity brand, @Context UriInfo uriInfo) {
 		brandService.addBrand(brand);
+		return Response.created(uriInfo.getAbsolutePath()).entity(brand).build();
 	}
 
 	@PUT
