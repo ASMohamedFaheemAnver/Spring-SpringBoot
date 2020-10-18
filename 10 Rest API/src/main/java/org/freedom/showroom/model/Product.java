@@ -1,4 +1,4 @@
-package org.freedom.showroom.hibernate.entity;
+package org.freedom.showroom.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,18 +8,18 @@ import javax.persistence.Table;
 
 @Table(name = "products")
 @Entity(name = "products")
-public class ProductEntity {
+public class Product {
 
 	@Id
 	int product_id;
-	@ManyToOne(targetEntity = BrandEntity.class)
+	@ManyToOne(targetEntity = Brand.class)
 	@JoinColumn(name = "brand_id")
-	BrandEntity brand_entity;
+	Brand brand_entity;
 	String product_name;
 	String category;
 	String cost;
 
-	public ProductEntity() {
+	public Product() {
 
 	}
 
@@ -31,11 +31,11 @@ public class ProductEntity {
 		this.product_id = product_id;
 	}
 
-	public BrandEntity getBrand_entity() {
+	public Brand getBrand_entity() {
 		return brand_entity;
 	}
 
-	public void setBrand_entity(BrandEntity brand_entity) {
+	public void setBrand_entity(Brand brand_entity) {
 		this.brand_entity = brand_entity;
 	}
 

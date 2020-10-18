@@ -1,34 +1,34 @@
-package org.freedom.showroom.hibernate.dao;
+package org.freedom.showroom.dao;
 
 import java.util.List;
 
-import org.freedom.showroom.hibernate.entity.BrandEntity;
+import org.freedom.showroom.model.Brand;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class BrandDAO {
 
-	SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(BrandEntity.class)
+	SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Brand.class)
 			.buildSessionFactory();
 
-	public List<BrandEntity> getBrands() {
+	public List<Brand> getBrands() {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		return session.createQuery("from brands").getResultList();
 	}
 
-	public void addBrand(BrandEntity brand) {
+	public void addBrand(Brand brand) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		session.save(brand);
 		session.getTransaction().commit();
 	}
 
-	public void updateBrand(BrandEntity updatedBrand) {
+	public void updateBrand(Brand updatedBrand) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		BrandEntity brand = session.get(BrandEntity.class, updatedBrand.getBrand_id());
+		Brand brand = session.get(Brand.class, updatedBrand.getBrand_id());
 		brand.setBrand_name(updatedBrand.getBrand_name());
 		session.getTransaction().commit();
 	}
@@ -36,15 +36,15 @@ public class BrandDAO {
 	public void deleteBrand(int brandId) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		BrandEntity brand = session.get(BrandEntity.class, brandId);
+		Brand brand = session.get(Brand.class, brandId);
 		session.delete(brand);
 		session.getTransaction().commit();
 	}
 
-	public BrandEntity getBrand(int brand_id) {
+	public Brand getBrand(int brand_id) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		return session.get(BrandEntity.class, brand_id);
+		return session.get(Brand.class, brand_id);
 	}
 
 }

@@ -1,5 +1,6 @@
 package org.freedom.showroom.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.net.ssl.SSLEngineResult.Status;
@@ -16,11 +17,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.freedom.showroom.hibernate.entity.BrandEntity;
+import org.freedom.showroom.model.Brand;
 import org.freedom.showroom.services.BrandService;
 
 @Path("/showroom")
-public class Brand {
+public class BrandResource {
 
 	BrandService brandService = new BrandService();
 	
@@ -29,15 +30,15 @@ public class Brand {
 	@Path("/get-brands")
 	// @Produces(MediaType.APPLICATION_XML)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<BrandEntity> getBrands() {
-		List<BrandEntity> listOfBrands = brandService.getBrands();
+	public List<Brand> getBrands() {
+		List<Brand> listOfBrands = brandService.getBrands();
 		return listOfBrands;
 	}
 	
 	@GET
 	@Path("/get-brand/{brandId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public BrandEntity getBrand(@PathParam("brandId") int brandId) {
+	public Brand getBrand(@PathParam("brandId") int brandId) {
 		return brandService.getBrand(brandId);
 	}
 
@@ -46,16 +47,18 @@ public class Brand {
 	//@Consumes(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response setBrand(BrandEntity brand, @Context UriInfo uriInfo) {
+	public Response setBrand(Brand brand, @Context UriInfo uriInfo) {
 		brandService.addBrand(brand);
-		return Response.created(uriInfo.getAbsolutePath()).entity(brand).build();
+		// String url = uriInfo.getAbsolutePath().toString() + "/" + brand.getBrand_id();
+		URI location = URI.create(uriInfo.getAbsolutePathBuilder().path(Integer.toString(brand.getBrand_id())).build().toString().replace("set", "get"));
+		return Response.created(location).entity(brand).build();
 	}
 
 	@PUT
 	@Path("/put-brand/{brandId}")
 	//@Consumes(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void putBrand(@PathParam("brandId") int brandId, BrandEntity updatedBrand) {
+	public void putBrand(@PathParam("brandId") int brandId, Brand updatedBrand) {
 		updatedBrand.setBrand_id(brandId);
 		brandService.updateBrand(updatedBrand);
 	}
@@ -69,7 +72,7 @@ public class Brand {
 	}
 	
 	@Path("/brand")
-	public Product productDelegation() {
-		return new Product();
+	public ProductResource productDelegation() {
+		return new ProductResource();
 	}
 }

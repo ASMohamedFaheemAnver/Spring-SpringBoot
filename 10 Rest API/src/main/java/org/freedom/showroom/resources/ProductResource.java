@@ -9,19 +9,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.freedom.showroom.hibernate.entity.ProductEntity;
+import org.freedom.showroom.model.Product;
 import org.freedom.showroom.services.ProductService;
 
-public class Product {
+public class ProductResource {
 	ProductService productService = new ProductService();
 
 	@GET
 	@Path("/{brandId}/products")
 	// @Produces(MediaType.APPLICATION_XML)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId,
+	public List<Product> getProductsByBrand(@PathParam("brandId") int brandId,
 			@QueryParam("category") String category, @QueryParam("start") int start, @QueryParam("size") int size) {
-		List<ProductEntity> listOfProducts;
+		List<Product> listOfProducts;
 		if ((category != null)) {
 			listOfProducts = productService.getProductsByBrandAndCategory(brandId, category);
 		} else {

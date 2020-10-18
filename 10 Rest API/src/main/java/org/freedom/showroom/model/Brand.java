@@ -1,4 +1,4 @@
-package org.freedom.showroom.hibernate.entity;
+package org.freedom.showroom.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 //@XmlRootElement
 @Table(name="brands")
 @Entity(name="brands")
-public class BrandEntity {
+public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="brand_id")
@@ -19,11 +19,11 @@ public class BrandEntity {
 	@Column(name="brand_name")
 	String brand_name;
 
-	public BrandEntity() {
+	public Brand() {
 		super();
 	}
 
-	public BrandEntity(int brand_id, String brand_name) {
+	public Brand(int brand_id, String brand_name) {
 		super();
 		this.brand_id = brand_id;
 		this.brand_name = brand_name;
