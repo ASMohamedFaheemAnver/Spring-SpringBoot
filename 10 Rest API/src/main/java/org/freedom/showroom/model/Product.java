@@ -11,13 +11,13 @@ import javax.persistence.Table;
 public class Product {
 
 	@Id
-	int product_id;
+	private int product_id;
 	@ManyToOne(targetEntity = Brand.class)
 	@JoinColumn(name = "brand_id")
-	Brand brand_entity;
-	String product_name;
-	String category;
-	String cost;
+	private Brand brand_entity;
+	private String product_name;
+	private String category;
+	private String cost;
 
 	public Product() {
 

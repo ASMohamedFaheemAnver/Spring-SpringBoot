@@ -1,5 +1,7 @@
 package org.freedom.showroom.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 //import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Transient;
 
 //@XmlRootElement
 @Table(name="brands")
@@ -15,9 +18,12 @@ public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="brand_id")
-	int brand_id;
+	private int brand_id;
 	@Column(name="brand_name")
-	String brand_name;
+	private String brand_name;
+	
+	@Transient
+	private List<Link> links;
 
 	public Brand() {
 		super();
@@ -43,6 +49,14 @@ public class Brand {
 
 	public void setBrand_name(String brand_name) {
 		this.brand_name = brand_name;
+	}
+
+	public List<Link> getLinks() {
+		return links;
+	}
+
+	public void setLinks(List<Link> links) {
+		this.links = links;
 	}
 
 }
