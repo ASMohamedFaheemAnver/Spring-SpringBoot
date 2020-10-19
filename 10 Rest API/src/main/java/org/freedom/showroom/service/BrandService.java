@@ -1,4 +1,4 @@
-package org.freedom.showroom.services;
+package org.freedom.showroom.service;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.freedom.showroom.resources;
+package org.freedom.showroom.resource;
 
 import java.net.URI;
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.freedom.showroom.model.Brand;
-import org.freedom.showroom.services.BrandService;
+import org.freedom.showroom.service.BrandService;
 
 @Path("/showroom")
 public class BrandResource {

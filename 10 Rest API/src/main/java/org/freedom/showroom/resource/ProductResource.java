@@ -1,4 +1,4 @@
-package org.freedom.showroom.resources;
+package org.freedom.showroom.resource;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.freedom.showroom.model.Product;
-import org.freedom.showroom.services.ProductService;
+import org.freedom.showroom.service.ProductService;
 
 public class ProductResource {
 	ProductService productService = new ProductService();
